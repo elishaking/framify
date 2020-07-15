@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node .",
     "start:dev": "nodemon src/app.ts",
-    "build": "rm -rf dist && tsc -p ."
+    "build": "rm -rf dist && tsc -p .",
+    "migrations:run": "ts-node src/migrations"
   },
   "dependencies": {
     "express": "^4.17.1",

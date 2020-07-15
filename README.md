@@ -19,6 +19,12 @@ These are the steps to get the app up and running
   yarn install
   ```
 
+- Run Migrations
+
+  ```sh
+  yarn migrations:run
+  ```
+
 - Run the application:
 
   ```sh
@@ -35,6 +41,7 @@ These are some of the software required to **build** and run this application in
 - Yarn `(>= 1.x.x)`
 
 ### Steps
+
 - Install Dependencies
 
   ```sh
