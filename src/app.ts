@@ -5,6 +5,8 @@ import { imageRouter } from "./routes";
 
 const app = express();
 
+// TODO: setup cors for prod
+
 // add security
 app.use(helmet());
 
