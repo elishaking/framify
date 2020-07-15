@@ -1,8 +1,12 @@
 import express from "express";
+import helmet from "helmet";
 
 import { imageRouter } from "./routes";
 
 const app = express();
+
+// add security
+app.use(helmet());
 
 // parse request body
 app.use(express.json());
