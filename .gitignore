@@ -109,3 +109,6 @@ dist/
 # DB
 *.sqlite3
 *.sqlite
+
+# Output Images
+data/output/*

@@ -1,7 +1,9 @@
+import path from "path";
 import express from "express";
 import helmet from "helmet";
 
 import { imageRouter } from "./routes";
+import { variables } from "./config/variables";
 
 const app = express();
 
@@ -11,8 +13,14 @@ const app = express();
 app.use(helmet());
 
 // parse request body
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
+
+// serve static files
+app.use(
+  "/images",
+  express.static(path.join(variables.rootDir, "data", "output"))
+);
 
 // routes
 app.get("/", (req, res) => {
@@ -29,5 +37,5 @@ app.use((req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = variables.port;
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

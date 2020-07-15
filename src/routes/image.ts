@@ -1,7 +1,7 @@
 import express from "express";
 
 import { getAllImages, createImage } from "../services";
-import { ErrorResponse } from "../utils";
+import { ErrorResponse, DataResponse } from "../utils";
 
 export const imageRouter = express.Router();
 
@@ -9,18 +9,26 @@ imageRouter
   .get("/", (req, res) => {
     getAllImages()
       .then((images) => {
-        res.json({
-          images,
-        });
+        res.status(200).json(new DataResponse(200, images));
       })
       .catch((err) => {
-        res.json(new ErrorResponse(500, err.message || "Something went wrong"));
+        res
+          .status(500)
+          .json(new ErrorResponse(500, err.message || "Something went wrong"));
       });
   })
   .post("/", (req, res) => {
-    res.status(201).json({
-      status: 201,
-      message: "Image Framed and stored",
-      image: createImage(),
-    });
+    const { imagePayload } = req.body;
+
+    createImage(imagePayload)
+      .then((image) => {
+        res
+          .status(201)
+          .json(new DataResponse(201, image, "Image Framed and stored"));
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json(new ErrorResponse(500, err.message || "Something went wrong"));
+      });
   });

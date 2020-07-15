@@ -1,1 +1,1 @@
-export { ImageModel } from "./image";
+export { ImageModel, ImagePayload } from "./image";
