@@ -1,5 +1,7 @@
+import { ImageModel } from "../models";
+
 export async function getAllImages() {
-  return [];
+  return ImageModel.findAll();
 }
 
 export async function createImage() {
