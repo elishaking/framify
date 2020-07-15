@@ -112,3 +112,4 @@ dist/
 
 # Output Images
 data/output/*
+!data/output/.gitkeep
