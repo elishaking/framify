@@ -22,4 +22,19 @@ describe("Get Endpoints", () => {
   });
 });
 
-// describe("Post Endpoints", () => {});
+describe("Post Endpoints", () => {
+  it("should not create framed image with empty request body", async (done) => {
+    const res = await request(app).post("/api/image").send({});
+    expect(res.status).toEqual(500);
+    expect(res.body.success).toBe(false);
+
+    done();
+  });
+
+  it("should return a 404 status for non-existent route", async (done) => {
+    const res = await request(app).post("/api/image/not-a-route");
+    expect(res.status).toEqual(404);
+
+    done();
+  });
+});
