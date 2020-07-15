@@ -32,4 +32,24 @@ export class ImageModel {
       });
     });
   }
+
+  save(): Promise<ImageData> {
+    return new Promise((resolve, reject) => {
+      db.run(
+        "INSERT INTO images (imageUrl, size, date) VALUES (?, ?, ?)",
+        [this.url, this.size, this.date],
+        (err) => {
+          if (err) {
+            reject(err);
+          }
+
+          resolve({
+            imageUrl: this.url,
+            size: this.size,
+            date: this.date,
+          });
+        }
+      );
+    });
+  }
 }
