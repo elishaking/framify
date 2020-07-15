@@ -1,6 +1,7 @@
 import { Database } from "sqlite3";
+import { variables } from "../config/variables";
 
-const db = new Database("data/db.sqlite3");
+const db = new Database(variables.dbPath);
 
 export const addImagesTable = () => {
   db.run(

@@ -29,13 +29,17 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/image", imageRouter);
+app.use("/api/image", imageRouter);
 
 app.use((req, res) => {
-  res.json({
+  res.status(404).json({
     message: "Not Found",
   });
 });
 
 const PORT = variables.port;
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+
+if (variables.env !== "test")
+  app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+
+export default app;
